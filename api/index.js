@@ -6,6 +6,6 @@ const endpoint = (req, res) => {
   });
 };
 
-const peerServer = PeerServer({ port: 9000, path: "/myapp" });
+const peerServer = PeerServer({ port: 9000, path: "/" });
 
 export default peerServer;
