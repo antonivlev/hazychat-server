@@ -1,11 +1,16 @@
-import { PeerServer } from "peer";
+import app from "express";
+import v4 from "uuid";
 
-const endpoint = (req, res) => {
-  res.json({
-    someKey: "this here is a value from server",
-  });
-};
+app.get("/api", (req, res) => {
+  const path = `/api/item/${v4()}`;
+  res.setHeader("Content-Type", "text/html");
+  res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
+  res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
+});
 
-const peerServer = PeerServer({ port: 9000, path: "/" });
+app.get("/api/item/:slug", (req, res) => {
+  const { slug } = req.params;
+  res.end(`Item: ${slug}`);
+});
 
-export default peerServer;
+module.exports = app;

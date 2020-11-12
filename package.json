@@ -1,0 +1,7 @@
+{
+  "name": "hazychat-server",
+  "description": "",
+  "dependencies": {
+    "peer": "^0.5.3"
+  }
+}
