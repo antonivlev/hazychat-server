@@ -1,16 +1,16 @@
-import app from "express";
-import v4 from "uuid";
+const express = require("express");
+const { ExpressPeerServer } = require("peer");
 
-app.get("/api", (req, res) => {
-  const path = `/api/item/${v4()}`;
-  res.setHeader("Content-Type", "text/html");
-  res.setHeader("Cache-Control", "s-max-age=1, stale-while-revalidate");
-  res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
+const app = express();
+
+app.get("/api", (req, res) => res.send("Helloooooo world!"));
+
+const server = app.listen(9000);
+
+const peerServer = ExpressPeerServer(server, {
+  path: "/myapp",
 });
 
-app.get("/api/item/:slug", (req, res) => {
-  const { slug } = req.params;
-  res.end(`Item: ${slug}`);
-});
+app.use("/api/peerjs", peerServer);
 
 module.exports = app;
