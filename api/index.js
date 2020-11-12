@@ -1,5 +1,7 @@
-module.exports = (req, res) => {
+const endpoint = (req, res) => {
   res.json({
-    body: "hello there",
+    someKey: "this here is a value from server",
   });
 };
+
+export default endpoint;
