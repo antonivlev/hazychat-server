@@ -11,6 +11,6 @@ const peerServer = ExpressPeerServer(server, {
   path: "/myapp",
 });
 
-app.use("/api/peerjs", peerServer);
+app.use("/api/peerjs:null", peerServer);
 
 module.exports = app;
